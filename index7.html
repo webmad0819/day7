@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      .result {
+        font-size: 40px;
+        color: green;
+      }
+
+      .error {
+        font-size: 40px;
+        color: red;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <input type="text" placeholder="value 1" class="s1" />
+    <input type="text" placeholder="value 2" class="s2" />
+    <input type="button" id="sum" value="click to add the numbers!" />
+
+    <p class="result"></p>
+    <p class="error"></p>
+    <script>
+      function sum(s1, s2) {
+        if (isNaN(s1) || isNaN(s2)) throw new Error(1001);
+
+        return s1 + s2;
+      }
+
+      //   let result = sum("10", 20);
+      //   console.log(result);
+
+      document.querySelector("#sum").onclick = function() {
+        let s1 = +document.querySelector(".s1").value;
+        let s2 = +document.querySelector(".s2").value;
+        document.querySelector(".error").innerHTML = ""
+
+        try {
+          document.querySelector(".result").innerHTML = sum(s1, s2);
+        } catch (error) {
+          switch (+error.message) {
+            case 1001:
+              document.querySelector(".error").innerHTML =
+                "max, please input ONLY numbers!";
+              break;
+          }
+        }
+      };
+
+      console.log("ironhack!!!");
+    </script>
+  </body>
+</html>
